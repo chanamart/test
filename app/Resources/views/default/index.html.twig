@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Test' %}
+
+{% block body -%}
+    <div class="container">
+        <div class="row">
+            <div id="col-md-12">
+                <div class="card">
+                    <div class="card-block" id="todo"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{%- endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #F5F5F5;
+            font: 18px/1.5 sans-serif;
+            padding: 45px 0;
+        }
+        .card {
+            background: #fff;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+    <script type="text/babel">
+        var ToDo = React.createClass({
+            getInitialState: function() {
+                return {data: []};
+            },
+            render: function() {
+                return (
+                        <div className="todo-list">
+                        </div>
+                );
+            }
+        });
+        ReactDOM.render(
+                <div>
+                    <h1>À faire</h1>
+                    <ToDo url="{{ path('list') }}" />
+                </div>,
+                document.getElementById('todo')
+        );
+    </script>
+{% endblock %}
